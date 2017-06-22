@@ -12,7 +12,8 @@ packages:
     - gettext
     - hostname
     - iputils
-    - qpid-dispatch
+    - qpid-dispatch-router
+    - qpid-dispatch-tools
     
 scripts:
     - package: qdrouterd
