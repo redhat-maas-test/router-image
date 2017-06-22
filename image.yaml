@@ -1,0 +1,25 @@
+version: 1.0
+name: jboss-amqmaas-1-tech-preview/amqmaas10-interconnect-openshift
+from: jboss/base-rhel7:1.0
+user: 185
+dogen:
+    version: "2.0.1"
+    ssl_verify: false
+cmd:
+    - "/etc/qpid-dispatch/run_qdr.sh"
+    
+packages:
+    - gettext
+    - hostname
+    - iputils
+    - qpid-dispatch
+    
+scripts:
+    - package: qdrouterd
+      exec: install
+      
+ports:
+    - value: 5672 
+    - value: 55672 
+    - value: 5671
+  
