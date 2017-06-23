@@ -4,10 +4,12 @@ IMAGE_VERSION?=latest
 REPO?=$(shell cat $(IMAGE_FILE) | grep "^name:" | cut -d' ' -f2)
 DOCKER_BUILD_OPTS?=
 DOCKER?=docker
+SCRIPTS?=../scripts
+YUM_REPO_DIR?=../repos
 
 build:
 	echo "Running docker build $(REPO)"
-	dogen --repo-files-dir $(YUM_REPO_DIR) --scripts $(CURDIR)/scripts --verbose $(IMAGE_FILE) $(CURDIR)/build
+	dogen --repo-files-dir $(YUM_REPO_DIR) --scripts $(SCRIPTS) --verbose $(IMAGE_FILE) $(CURDIR)/build
 	$(DOCKER) build $(DOCKER_BUILD_OPTS) -t $(REPO):$(COMMIT) $(CURDIR)/build
 
 push:
